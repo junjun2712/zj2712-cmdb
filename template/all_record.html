@@ -1,0 +1,51 @@
+{% extends 'base1.html' %}
+
+    {% block title %}
+        <title>查询</title>
+    {% endblock %}
+    {% block omaudit_run %}
+
+
+        {% if contact_list %}
+            <div id = "record_list">
+                <table class = "table_record_list">
+                    <tr>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>电话</th>
+                        <th>qq</th>
+                    </tr>
+{#                   {% for record in result  %}#}
+                    {% for contact in contact_list.object_list %}
+                        <tr>
+                            <td>{{ contact.history_datetime }}</td>
+                            <td>{{ contact.history_command}}</td>
+                            <td>{{ contact.history_ip }}</td>
+                            <td>{{ contact.history_user }}</td>
+                        </tr>
+                    {% endfor %}
+                   </table>
+                <div class="pagination">
+                       <span class="step-links">
+                            {% if contacts.has_previous %}
+                                <a href="?page={{ contacts.previous_page_number }}">上一页</a>
+                            {% endif %}
+
+                        <span class="current">
+                            第 {{ contacts.number }} 页
+                        </span>
+                        <span class="current">
+                        共 {{ contacts.paginator.num_pages }} 页
+                        </span>
+
+                    {% if contacts.has_next %}
+                            <a href="?page={{ contacts.next_page_number }}">下一页</a>
+                    {% endif %}
+                        </span>
+                </div>
+            </div>
+        {% endif %}
+        <div class = "footer">
+        </div>
+    </div>
+{% endblock %}
